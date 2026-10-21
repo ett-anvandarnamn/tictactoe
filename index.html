@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tre i rad</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main id="main" class="main">
+    <div id="background" class="background">
+      <div class="game">
+        <span class="dash"></span>
+        <div class="heading">
+          <span class="dash"></span>
+          <div class="heading-text-wrapper">
+            <h1 class="h1">Tre i rad</h1>
+          </div>
+          <span class="dash"></span>
+        </div>
+        <span class="dash"></span>
+
+        <div id="grid" class="grid-container">
+          <button class="grid-button" data-index="0"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="1"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="2"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="3"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="4"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="5"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="6"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="7"><span class="grid-button-span"></span></button>
+          <button class="grid-button" data-index="8"><span class="grid-button-span"></span></button>
+        </div>
+
+        <div id="turn-output" class="status-text-wrapper">
+          <p id="turn-text-x" class="turn-text"><span class="turn-text-normal">x</span> att spela.</p>
+          <p id="turn-text-o" class="turn-text hidden"><span class="turn-text-normal">o</span> att spela.</p>
+          <div class="cursor"></div>
+        </div>
+
+        <div id="end-game-output" class="status-text-wrapper hidden">
+          <div class="end-game-message">
+            <p>
+              <span id="win-message" class="hidden">
+                <span id="win-message-x" class="turn-text-normal">x</span>
+                <span id="win-message-o" class="turn-text-normal">o</span>
+                har vunnit spelet. Grattis.
+              </span>
+
+              <span id="draw-message" class="hidden">
+                Det blev oavgjort.
+              </span>
+            </p>
+            <button id="play-again-button" class="play-again-button">Spela igen</button>
+            <p> eller </p>
+            <button id="close-button" class="play-again-button">Avsluta</button>
+            <p>?</p>
+          </div>
+          <div class="cursor"></div>
+        </div>
+
+        <div class="flicker"></div>
+      </div>
+    </div>
+    <div id="shut-down" class="shut-down hidden"></div>
+  </main>
+
+  <script type="module" src="dist/index.js"></script>
+</body>
+
+</html>

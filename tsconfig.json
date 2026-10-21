@@ -1,0 +1,13 @@
+{
+    "module": "nodenext",
+    "compilerOptions": {
+        "target": "ESNext",
+        "esModuleInterop": true, 
+        "allowImportingTsExtensions": true,
+        "rewriteRelativeImportExtensions": true,
+        "outDir": "./dist",
+        "rootDir": "./src"
+    },
+    "include": ["src/**/*"],
+    "noEmit": true
+}

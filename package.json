@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "compile": "npm run format && npm run lint && tsc",
+    "format": "prettier --write ./src",
+    "lint": "eslint ./src",
+    "serve": "http-server ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "10.10.0",
+    "eslint-config-prettier": "^10.1.8",
+    "http-server": "14.1.1",
+    "prettier": "3.9.9",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.70.0"
+  }
+}

@@ -1,0 +1,411 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: gray;
+    font-family: sans-serif;
+}
+
+p {
+    margin: 0;
+}
+
+button {
+    cursor: pointer;
+}
+
+.main {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.85;
+    width: 60%;
+}
+
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.22);
+    flex: 1;
+    color: #00fc00;
+    text-shadow: 1px 1px 8px #eee, 3px 3px 3px rgba(27, 255, 49, 0.6), -1px -1px rgba(27, 255, 49, 0.6);
+    font-family: monospace;
+    font-variant: all-small-caps;
+    border-radius: 12%;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    margin-left: 6%;
+    margin-right: 6%;
+}
+
+.background:before,
+.background:after {
+    content: "";
+    transform: translateZ(0);
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.background:before {
+    background: repeating-linear-gradient(darkred 0px, #043004 2px, #010126 6px);
+}
+
+.background:after {
+    background: repeating-linear-gradient(90deg,
+            darkred 2px,
+            darkgreen 2px,
+            darkblue 4px);
+    animation: Animation 3s ease infinite;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 160px);
+    grid-template-rows: repeat(3, 160px);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.grid-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    outline: 1px dashed #00dd00;
+    outline-offset: -5px;
+    border: 1px dashed #00dd00;
+    box-shadow: 2px 2px 6px rgba(155, 255, 155, 0.5);
+}
+
+.grid-button:focus-visible {
+    border: 4px dashed #00dd00;
+}
+
+.grid-button:hover:not([disabled]) {
+    background-color: rgba(30, 202, 30, 0.6);
+}
+
+.grid-button-span {
+    pointer-events: none;
+}
+
+.heading {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.heading-text-wrapper {
+    flex-basis: 55%;
+    display: flex;
+    justify-content: center;
+}
+
+.h1 {
+    margin: 0;
+    margin-bottom: 4px;
+    font-size: 26px;
+    font-weight: 100;
+}
+
+.dash {
+    border: 1px dashed #00ee00;
+    width: 100%;
+    height: 0px;
+    box-shadow: 2px 2px 3px rgba(155, 255, 155, 0.5);
+}
+
+.flicker {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    background: #ffffff;
+    opacity: 0.35;
+    left: 0;
+    top: 100%;
+    border-radius: 2%;
+    margin-right: 6%;
+    filter: blur(3px);
+    pointer-events: none;
+    animation:
+        Flicker 3.5s linear infinite,
+        Opacity 11s ease-in-out infinite alternate,
+        Jitter 0.15s linear infinite;
+}
+
+@keyframes Flicker {
+    0% {
+        top: 100%;
+    }
+
+    50% {
+        top: 54%
+    }
+
+    60% {
+        top: 44%;
+        opacity: 0;
+    }
+
+    75% {
+        top: 30%;
+        dispay: none;
+    }
+
+    100% {
+        top: 0%;
+    }
+}
+
+@keyframes Opacity {
+
+    0%,
+    15% {
+        opacity: 0.35;
+    }
+
+    15.1% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 0;
+    }
+
+    40.1% {
+        opacity: 0.25;
+    }
+
+    42% {
+        opacity: 0.1;
+    }
+
+    43% {
+        opacity: 0.3;
+    }
+
+    44% {
+        opacity: 0;
+    }
+
+    44.5% {
+        opacity: 0.35;
+    }
+
+    75% {
+        opacity: 0.35;
+    }
+
+    75.1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes Jitter {
+    0%,
+    100% {
+        margin-top: 0px;
+    }
+
+    33% {
+        margin-top: 3px;
+    }
+
+    66% {
+        margin-top: -2px;
+    }
+}
+
+.o-played {
+    display: block;
+    border: 1px #00ee00 dashed;
+    border-radius: 50%;
+    height: 70%;
+    width: 70%;
+    background-color: transparent;
+    box-shadow: 1px 0px 7px 1px rgba(155, 255, 155, 0.8);
+}
+
+.x-played {
+    display: inline-block;
+    position: relative;
+    width: 85%;
+    height: 85%;
+}
+
+.x-played::before,
+.x-played::after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    background-color: transparent;
+    border-left: 1px #00ee00 dashed;
+    box-shadow: 2px 2px 3px rgba(155, 255, 155, 0.8);
+}
+
+.x-played::before {
+    transform: translateX(-50%) rotate(45deg);
+}
+
+.x-played::after {
+    transform: translateX(-50%) rotate(-45deg);
+}
+
+.status-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.turn-text {
+    animation: Typing 0.7s steps(12) 1s 1 normal both;
+    margin: 0;
+    font-size: 21px;
+    font-weight: 100;
+    white-space: nowrap;
+    overflow-x: hidden;
+}
+
+.turn-text-normal {
+    font-variant: normal;
+}
+
+.status-text-wrapper {
+    display: flex; 
+    align-items: center;
+    height: 42px;
+}
+
+@keyframes Typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.end-game-message {
+    animation: Typing 2s steps(20) 1s 1 normal both;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow-x: hidden;
+    font-size: 21px;
+}
+
+.win-text {
+    margin: 0;
+    display: inline;
+}
+
+.o #win-message-x {
+    display: none;
+}
+
+.x #win-message-o {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.cursor {
+    animation: Blink 1s infinite;
+    background-color: #00ee00;
+    width: 12px;
+    height: 21px;
+}
+
+@keyframes Blink {
+    0%,
+    50% {
+        visibility: visible;
+    }
+
+    51%,
+    100% {
+        visibility: hidden;
+    }
+}
+
+.play-again-button {
+    display: inline-block;
+    background-color: transparent;
+    outline: 1px dashed #00dd00;
+    outline-offset: -5px;
+    border: 1px dashed #00dd00;
+    box-shadow: 2px 2px 6px rgba(155, 255, 155, 0.5);
+    color: #00ee00;
+    font-family: monospace;
+    font-variant: all-small-caps;
+    text-shadow: 1px 1px 8px #eee, 3px 3px 3px rgba(27, 255, 49, 0.6), -1px -1px rgba(27, 255, 49, 0.6);
+    font-size: 21px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.play-again-button:focus-visible {
+    border: 3px dashed #00dd00;
+}
+
+.play-again-button:hover {
+    background-color: rgba(30, 202, 30, 0.7);
+}
+
+.shut-down {
+    animation: Shutdown 4s cubic-bezier(0, 0, 0, 0.96);
+    width: 3px;
+    height: 3px;
+    background-color: #00aa00;
+    margin: auto;
+    opacity: 0%;
+}
+
+@keyframes Shutdown {
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 100%;
+    }
+    5% {
+        height: 3px;
+        width: 100%;
+    }
+    10% {
+        width: 3px;
+    }
+    40% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}
